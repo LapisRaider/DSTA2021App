@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     width: "90%",
     borderRadius: 15,
     padding: "3%",
-    alignContent: "flex-start",
+    margin: "1%",
   },
   titleStyle: {
     color: "black",
