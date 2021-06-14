@@ -4,6 +4,7 @@ import { Text, Button } from "react-native-paper";
 import { SafeAreaView } from "react-native-safe-area-context";
 import InfoBox from "../Components/InfoBox";
 import ImageSlider from "../Components/ImageSlider";
+import Header from "../Components/Header";
 
 /*  thing i need:
         - Able to render out a button at the bottom
@@ -19,19 +20,23 @@ const GroupBuyScreen = () => {
 
   return (
     <SafeAreaView style={styles.mainContainer}>
+      <Header title="Test Header" chat={true} back={true} />
       <ScrollView contentContainerStyle={styles.scrollContainer}>
-        <ImageSlider />
+        <ImageSlider
+          widthMultiplier={0.6}
+          bottomMarginVal={"2%"}
+          topMarginVal={"5%"}
+        />
         <InfoBox title={tempTitle} innerText={tempInnerText} />
         <InfoBox title={tempTitle} innerText={tempInnerText} />
         <InfoBox title={tempTitle} innerText={tempInnerText} />
         <InfoBox title={tempTitle} innerText={tempInnerText} />
         <Button
           style={styles.orderButton}
-          icon="basket"
           mode="contained"
           onPress={() => console.log("Pressed")}
         >
-          Order now!!
+          <Text style={styles.orderText}> ORDER NOW!!</Text>
         </Button>
       </ScrollView>
     </SafeAreaView>
@@ -48,6 +53,8 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "flex-end",
+    marginHorizontal: "3%",
+    marginBottom: "10%",
   },
   text: {
     color: "black",
@@ -55,7 +62,15 @@ const styles = StyleSheet.create({
   orderButton: {
     backgroundColor: "white",
     borderColor: "#FFC300",
-    borderWidth: 10,
+    borderWidth: 2,
+    width: "80%",
+    marginTop: "8%",
+    padding: "3%",
+    borderRadius: 10,
+  },
+  orderText: {
+    color: "black",
+    fontSize: 18,
   },
 });
 
