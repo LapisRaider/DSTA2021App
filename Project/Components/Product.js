@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { Text, Title, List } from "react-native-paper";
 
 export default function Product({ title, description, price }) {
+  const [Quantity, setQuantity] = useState("Quantity");
+  const [expanded, setExpanded] = useState(false);
+
   return (
     <View style={styles.mainContainer}>
       <Title style={styles.titleStyle}>
@@ -10,12 +13,52 @@ export default function Product({ title, description, price }) {
         {title} - $ {price}
       </Title>
       <Text> {description} </Text>
-      <List.Accordion style={styles.accordionStyle} title="Quantity">
-        <List.Item style={styles.listItemStyle} title="1" />
-        <List.Item style={styles.listItemStyle} title="2" />
-        <List.Item style={styles.listItemStyle} title="3" />
-        <List.Item style={styles.listItemStyle} title="4" />
-        <List.Item style={styles.listItemStyle} title="5" />
+      <List.Accordion
+        style={styles.accordionStyle}
+        title={Quantity}
+        expanded={expanded}
+        onPress={() => setExpanded(!expanded)}
+      >
+        <List.Item
+          style={styles.listItemStyle}
+          title="1"
+          onPress={() => {
+            setQuantity("1");
+            setExpanded(!expanded);
+          }}
+        />
+        <List.Item
+          style={styles.listItemStyle}
+          title="2"
+          onPress={() => {
+            setQuantity("2");
+            setExpanded(!expanded);
+          }}
+        />
+        <List.Item
+          style={styles.listItemStyle}
+          title="3"
+          onPress={() => {
+            setQuantity("3");
+            setExpanded(!expanded);
+          }}
+        />
+        <List.Item
+          style={styles.listItemStyle}
+          title="4"
+          onPress={() => {
+            setQuantity("4");
+            setExpanded(!expanded);
+          }}
+        />
+        <List.Item
+          style={styles.listItemStyle}
+          title="5"
+          onPress={() => {
+            setQuantity("5");
+            setExpanded(!expanded);
+          }}
+        />
       </List.Accordion>
     </View>
   );

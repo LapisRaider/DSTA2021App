@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FlatList, StyleSheet, View } from "react-native";
+import { FlatList, StyleSheet, View, TouchableOpacity } from "react-native";
 import { Text } from "react-native-paper";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Product from "../Components/Product";
@@ -18,7 +18,7 @@ export default function paymentScreen() {
   }
 
   return (
-    <View style={styles.mainContainer}>
+    <SafeAreaView style={styles.mainContainer}>
       <Product title="meep" description="meep" price={3} />
 
       <FlatList
@@ -32,7 +32,7 @@ export default function paymentScreen() {
       <TouchableOpacity style={styles.paymentButton}>
         <Text style={styles.paymentText}> Payment </Text>
       </TouchableOpacity>
-    </View>
+    </SafeAreaView>
   );
 }
 
