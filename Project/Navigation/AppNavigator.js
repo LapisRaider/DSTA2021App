@@ -1,11 +1,22 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createStackNavigator } from '@react-navigation/stack';
 import { AntDesign } from '@expo/vector-icons';
 
-import { ShopScreen, ProfileScreen } from '../Screens/index';
+import { ShopScreen, ProfileScreen, AuthScreen } from '../Screens/index';
 
+const App = createStackNavigator();
+const Auth = createStackNavigator();
 const Tabs = createBottomTabNavigator();
+
+const AuthNavigator = () => {
+  return (
+    <Auth.Navigator headerMode='none'>
+      <Auth.Screen name='Auth' component={AuthScreen} />
+    </Auth.Navigator>
+  );
+};
 
 const TabsNavigator = () => {
   return (
@@ -35,9 +46,18 @@ const TabsNavigator = () => {
   );
 };
 
+const AppStackNavigator = () => {
+  return (
+    <App.Navigator headerMode='none'>
+      <App.Screen name='AuthNavigator' component={AuthNavigator} />
+      <App.Screen name='TabsNavigator' component={TabsNavigator} />
+    </App.Navigator>
+  );
+};
+
 const AppNavigator = () => (
   <NavigationContainer>
-    <TabsNavigator />
+    <AppStackNavigator />
   </NavigationContainer>
 );
 export default AppNavigator;
