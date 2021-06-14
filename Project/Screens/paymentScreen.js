@@ -4,7 +4,7 @@ import { Text } from "react-native-paper";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Product from "../Components/Product";
 
-function paymentScreen() {
+export default function paymentScreen() {
   const [products, setProducts] = useState([]);
 
   function addProduct({ product }) {
@@ -41,18 +41,22 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   amountStyle: {
-    height: 10,
+    height: 30,
     alignSelf: "center",
     alignItems: "center",
+    justifyContent: "center",
     color: "#FFC300",
     width: "60%",
   },
   paymentButton: {
     borderColor: "#FFC300",
+    borderWidth: 1,
     backgroundColor: "white",
     width: "60%",
-    height: 10,
+    height: 30,
     alignSelf: "center",
+    justifyContent: "center",
+    margin: 10,
   },
   paymentText: {
     fontWeight: "bold",
