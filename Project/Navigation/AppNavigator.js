@@ -4,7 +4,9 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import { AntDesign } from '@expo/vector-icons';
 
-import { ShopScreen, ProfileScreen, AuthScreen } from '../Screens/index';
+import AuthScreen from '../Screens/AuthScreen';
+import ShopScreen from '../Screens/ShopScreen';
+import ProfileScreen from '../Screens/ProfileScreen';
 
 const App = createStackNavigator();
 const Auth = createStackNavigator();

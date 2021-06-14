@@ -8,8 +8,10 @@ import {
   Text,
   Dimensions
 } from 'react-native';
-import { TextInput, Button } from 'react-native-paper';
+import { TextInput, Button, Divider } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
+
+import Header from '../Components/Header';
 
 const AuthScreen = ({ navigation }) => {
   const [email, setEmail] = useState('');
@@ -33,6 +35,21 @@ const AuthScreen = ({ navigation }) => {
       behavior={Platform.OS === 'ios' ? 'padding' : null}
     >
       <SafeAreaView style={styles.parentContainer}>
+        {/* Usage of the Headers to apply to respective screens */}
+        <Header title='Test Header' chat={true} back={true} />
+        <Divider />
+        <Divider />
+        <Divider />
+        <Header title='' />
+        <Divider />
+        <Divider />
+        <Divider />
+        <Header title='Test Header' />
+        <Divider />
+        <Divider />
+        <Divider />
+        <Header title='Test Header' back={true} />
+        {/* Usage of the Headers to apply to respective screens */}
         <ScrollView>
           <View style={styles.authContainer}>
             <View style={styles.greetingContainer}>
