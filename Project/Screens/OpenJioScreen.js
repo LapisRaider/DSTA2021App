@@ -16,6 +16,8 @@ const OpenJioScreen = () => {
   const [shopName, setShopName] = useState('');
   const [aboutShop, setAboutShop] = useState('');
   const [collectionPoint, setCollectionPoint] = useState('');
+  const [scDate, setSCDate] = useState('');
+  const [ofcDate, setOFCDate] = useState('');
   const [items, setItems] = useState([
     {
       id: 1,
@@ -63,6 +65,11 @@ const OpenJioScreen = () => {
         }
       });
     });
+  };
+
+  const onChange = selectedDate => {
+    const currentDate = selectedDate || date;
+    setDate(currentDate);
   };
 
   return (
@@ -124,6 +131,27 @@ const OpenJioScreen = () => {
               value={collectionPoint}
               onChangeText={input => setCollectionPoint(input)}
             />
+            <TextInput
+              style={styles.input}
+              placeholder='DD/MM/YYYY'
+              label='Self Collection Date'
+              mode='outlined'
+              value={scDate}
+              onChangeText={input => setSCDate(input)}
+              right={<TextInput.Icon name='calendar' />}
+            />
+            <TextInput
+              style={styles.input}
+              placeholder='DD/MM/YYYY'
+              label='Order Form Closing'
+              mode='outlined'
+              value={ofcDate}
+              onChangeText={input => setOFCDate(input)}
+              right={<TextInput.Icon name='calendar' />}
+            />
+            <Button mode='contained' style={styles.input}>
+              Start Jio!
+            </Button>
           </View>
         </ScrollView>
       </SafeAreaView>

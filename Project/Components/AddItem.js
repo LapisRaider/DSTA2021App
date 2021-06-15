@@ -97,7 +97,7 @@ const AddItem = ({ item, add, remove }) => {
         <View style={styles.imagePicker}>
           <View style={styles.imagePreview}>
             {!image ? (
-              <Text>No image picked yet.</Text>
+              <Text>No image yet.</Text>
             ) : (
               <Image style={styles.image} source={{ uri: image }} />
             )}
