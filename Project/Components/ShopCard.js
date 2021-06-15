@@ -3,7 +3,6 @@ import { Dimensions, Image, StyleSheet, Text, View } from 'react-native';
 import { ProgressBar } from "react-native-paper";
 
 export default function ShopCard({ shopName, imageURL, imageLocal, collectionTime, collectionPoint, currentMoney, goalMoney }) {
-    console.log(imageURL);
     return (
         <View style={styles.outerView}>
             <View style={styles.innerView}>
