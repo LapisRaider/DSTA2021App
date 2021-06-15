@@ -6,7 +6,7 @@ import {
   Platform,
   ScrollView
 } from 'react-native';
-import { TextInput, Button } from 'react-native-paper';
+import { TextInput, Button, Subheading } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import Header from '../Components/Header';
@@ -101,9 +101,20 @@ const OpenJioScreen = () => {
               ))}
             </View>
             <View style={styles.addBtnContainer}>
-              <Button style={styles.addBtn} mode='contained' onPress={addItem}>
-                Add More Items
-              </Button>
+              {items.length > 0 && (
+                <View style={{ flex: 1 }}>
+                  <Subheading>{`No. of Items: ${items.length}`}</Subheading>
+                </View>
+              )}
+              <View style={{ flex: 1.2, alignItems: 'flex-end' }}>
+                <Button
+                  style={styles.addBtn}
+                  mode='contained'
+                  onPress={addItem}
+                >
+                  Add More Items
+                </Button>
+              </View>
             </View>
             <TextInput
               style={styles.input}
@@ -141,7 +152,8 @@ const styles = StyleSheet.create({
   },
   addBtnContainer: {
     width: '80%',
-    alignItems: 'flex-end'
+    flexDirection: 'row',
+    alignItems: 'center'
   },
   addBtn: {
     marginVertical: 10
