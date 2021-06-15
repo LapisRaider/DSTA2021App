@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { TouchableOpacity, FlatList, StyleSheet, Text, View } from 'react-native';
-import { Button, Searchbar } from 'react-native-paper';
+import { Searchbar } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ShopCard from '../Components/ShopCard.js';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 const ShopScreen = () => {
+  const [search, setSearch] = useState('');
   const [cards, setCards] = useState([]);
+  const [filteredCards, setFilteredCards] = useState([]);
 
   function addCard() {
     setCards([
@@ -15,9 +18,29 @@ const ShopScreen = () => {
           collectionPoint: "Blk 851 Hougang Central, #13-24",
           currentMoney: 105,
           goalMoney: 300,
+          index: cards.length,
         },
         ...cards,
     ]);
+
+    searchFilter('');
+  };
+
+  const searchFilter = (text) => {
+    if (text) {
+      const newData = cards.filter((item) => {
+        const textData = text.toUpperCase();
+        const itemTitle = item.title ? item.title.toUpperCase() : ''.toUpperCase();
+        const itemCollectionTime = item.collectionTime ? item.collectionTime.toUpperCase() : ''.toUpperCase();
+        const itemCollectionPoint = item.collectionPoint ? item.collectionPoint.toUpperCase() : ''.toUpperCase();
+        return (itemTitle.indexOf(textData) > -1) || (itemCollectionTime.indexOf(textData) > -1) || (itemCollectionPoint.indexOf(textData) > -1);
+      });
+      setFilteredCards(newData);
+      setSearch(text);
+    } else {
+      setFilteredCards(cards);
+      setSearch(text);
+    }
   };
 
   function renderCard({item}) {
@@ -35,10 +58,17 @@ const ShopScreen = () => {
   return (
     <SafeAreaView style={styles.mainContainer}>
         <View style={styles.header}>
-          <Searchbar style={styles.searchbar} placeholder="Search"/>
-          <Button style={styles.addButton} onPress={addCard} icon="plus-box" fontSize={50} color="#ffffff" mode="outlined" />
+          <Searchbar style={styles.searchbar} placeholder="I'm looking for..." value={search} onChangeText={(text) => searchFilter(text)} />
+          <TouchableOpacity style={styles.addButton} onPress={addCard}>
+            <MaterialCommunityIcons size={40} name="plus-box" color="black" />
+          </TouchableOpacity>
         </View>
-        <FlatList style={styles.flatList} data={cards} renderItem={renderCard}/>
+        <FlatList
+          style={styles.flatList}
+          data={filteredCards}
+          renderItem={renderCard}
+          keyExtractor={(item, index) => index.toString()}
+        />
     </SafeAreaView>
   );
 };
@@ -56,13 +86,13 @@ const styles = StyleSheet.create({
     padding: 8,
   },
   searchbar: {
-    flex: 1,
+    flex: 0.9,
     height: "80%",
     justifyContent: 'center',
     alignItems: 'center',
   },
   addButton: {
-    flex: 0.05,
+    flex: 0.1,
     justifyContent: 'center',
     alignItems: 'center',
   },
