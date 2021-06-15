@@ -5,22 +5,30 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import Product from "../Components/Product";
 import Header from "../Components/Header";
 
-export default function PaymentScreen() {
-  const [products, setProducts] = useState([]);
+const DATA = [
+  { title: "meep", description: "meeep", price: 3, id: "0" },
+  { title: "meep", description: "meeep", price: 3, id: "0" },
+];
 
-  function renderProduct({ product }) {
+export default function paymentScreen() {
+  const [products, setProducts] = useState([
+    { title: "meep", description: "meeep", price: 3, id: "0" },
+    { title: "meep", description: "meeep", price: 3, id: "0" },
+  ]);
+
+  function renderProduct({ item }) {
     return (
       <Product
-        title={product.title}
-        description={product.description}
-        price={product.price}
+        title={item.title}
+        description={item.description}
+        price={item.price}
       />
     );
   }
 
   return (
     <SafeAreaView style={styles.mainContainer}>
-      <Header title="Test Header" chat={false} back={true} />
+      <Header title="WHISKING BAKES" chat={false} back={true} />
       <Product
         title="Orh Nee Tart Balls"
         description="Whisking Bakes is the creator of the world's first Orh Nee Tarts. Inspired by the traditional Teochew dessert, Orh Nee, this buttery unique dessert gained the love of many customers.
