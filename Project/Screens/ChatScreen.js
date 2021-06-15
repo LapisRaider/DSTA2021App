@@ -37,14 +37,16 @@ const ChatScreen = () => {
 
   return (
     <View style={styles.mainContainer}>
-      {messages.map((msg, index) => (
-        <ChatBox
-          msg={msg.message}
-          colorBG={msg.senderID == 0 ? receiverColor : senderColor}
-          alignment={msg.senderID == 0 ? "flex-start" : "flex-end"}
-          key={index}
-        />
-      ))}
+      <ScrollView contentContainerStyle={styles.scrollContainer}>
+        {messages.map((msg, index) => (
+          <ChatBox
+            msg={msg.message}
+            colorBG={msg.senderID == 0 ? receiverColor : senderColor}
+            alignment={msg.senderID == 0 ? "flex-start" : "flex-end"}
+            key={index}
+          />
+        ))}
+      </ScrollView>
 
       <View style={styles.textInputContainer}>
         <TextInput
@@ -64,8 +66,13 @@ const styles = StyleSheet.create({
     flex: 1,
     display: "flex",
   },
+  scrollContainer: {
+    flex: 1,
+    marginBottom: "20%",
+  },
   textInputContainer: {
-    position: "absolute",
+    flex: 1,
+    position: "fixed",
     bottom: 0,
     width: "100%",
   },
