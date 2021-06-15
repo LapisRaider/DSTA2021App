@@ -8,11 +8,11 @@ export default function Product({ title, description, price }) {
 
   return (
     <View style={styles.mainContainer}>
-      <Title style={styles.titleStyle}>
+      <Text style={styles.titleStyle}>
         {" "}
         {title} - $ {price}
-      </Title>
-      <Text> {description} </Text>
+      </Text>
+      <Text style={styles.textStyle}> {description} </Text>
       <List.Accordion
         style={styles.accordionStyle}
         title={Quantity}
@@ -76,6 +76,11 @@ const styles = StyleSheet.create({
   titleStyle: {
     color: "black",
     fontWeight: "bold",
+    fontSize: 14,
+    justifyContent: "center",
+  },
+  textStyle: {
+    fontSize: 12,
   },
   accordionStyle: {
     height: 30,
