@@ -43,7 +43,12 @@ const ChatScreen = () => {
   return (
     <View style={styles.mainContainer}>
       <Header title={nameOfShop} back={true} />
-      <ScrollView contentContainerStyle={styles.scrollContainer}>
+      <ScrollView
+        contentContainerStyle={[
+          styles.scrollContainer,
+          { marginBottom: tabBarHeight + 50 },
+        ]}
+      >
         {messages.map((msg, index) => (
           <ChatBox
             msg={msg.message}
@@ -61,6 +66,7 @@ const ChatScreen = () => {
           onChangeText={(text) => setText(text)}
           style={styles.textInput}
           onSubmitEditing={submitText}
+          right={<TextInput.Icon onPress={submitText} name="send" />}
         />
       </View>
     </View>
@@ -74,15 +80,17 @@ const styles = StyleSheet.create({
   },
   scrollContainer: {
     flexGrow: 1,
-    marginBottom: "20%",
   },
   textInputContainer: {
     flex: 1,
     position: "fixed",
     width: "100%",
+    flexDirection: "row",
   },
   textInput: {
+    flex: 1,
     borderColor: "Black",
+    alignSelf: "flex-start",
   },
 });
 
