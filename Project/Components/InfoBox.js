@@ -7,7 +7,6 @@ import { SafeAreaView } from "react-native-safe-area-context";
     Should show a title, and information that I can just insert in
 */
 const InfoBox = ({ title, innerText }) => {
-  console.log(title);
   return (
     <View style={styles.mainContainer}>
       <Title style={styles.titleStyle}>{title}</Title>
