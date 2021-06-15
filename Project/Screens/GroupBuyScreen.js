@@ -13,14 +13,19 @@ import Header from "../Components/Header";
         - top right got a ask question icon
 */
 
-const GroupBuyScreen = () => {
+const GroupBuyScreen = ({ navigation }) => {
   var tempInnerText =
     "Lorem ipsum dolor sit a This makes the content container stre sit a This makes the content container stretch to fi ut labore et dol  sit a This makes the content container stretch to fi ut labore et doltch to fi ut labore et dol  sit a This makes the content container stretch to fi ut labore et dol  sit a This makes the content container stretch to fi ut l sit a This makes the content container stretch to fi ut labore et dolabore et dol";
   var shopName = "SHOP NAME";
 
   return (
     <SafeAreaView style={styles.mainContainer}>
-      <Header title={shopName} chat={true} back={true} />
+      <Header
+        title={shopName}
+        chat={true}
+        back={true}
+        func={() => navigation.navigate("Profile")}
+      />
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         <ImageSlider
           widthMultiplier={0.9}
