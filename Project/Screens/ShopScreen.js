@@ -21,10 +21,10 @@ const ShopScreen = () => {
           index: cards.length,
         },
         ...cards,
-    ]);
-
-    searchFilter('');
+    ], );
   };
+
+  useEffect(() => { searchFilter(search); }, [cards]);
 
   const searchFilter = (text) => {
     if (text) {
