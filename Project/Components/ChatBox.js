@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, Title } from "react-native-paper";
+import { Text } from "react-native-paper";
 import { StyleSheet, View } from "react-native";
 
 const ChatBox = ({ msg, colorBG, alignment }) => {
@@ -7,7 +7,7 @@ const ChatBox = ({ msg, colorBG, alignment }) => {
     <View
       style={[
         styles.chatContainer,
-        { backgroundColor: colorBG, alignSelf: alignment },
+        { borderColor: colorBG, alignSelf: alignment },
       ]}
     >
       <Text style={styles.chatText}>{msg}</Text>
@@ -21,6 +21,8 @@ const styles = StyleSheet.create({
     maxWidth: "55%",
     minWidth: "10%",
     borderRadius: 10,
+    borderWidth: 2,
+    backgroundColor: "white",
     marginHorizontal: 10,
     marginVertical: 5,
   },

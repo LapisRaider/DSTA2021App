@@ -1,15 +1,20 @@
 import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StyleSheet, View, ScrollView } from "react-native";
-import { Text, Title, TextInput } from "react-native-paper";
+import { TextInput } from "react-native-paper";
+import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs";
+import Header from "../Components/Header";
 
 import ChatBox from "../Components/ChatBox";
 
-const senderColor = "#FAC200";
-const receiverColor = "#F00000";
+const senderColor = "#FFD52C";
+const receiverColor = "#FF9D2C";
 
 const ChatScreen = () => {
   //0 is receiver, 1 is sender
+  const tabBarHeight = useBottomTabBarHeight();
+  const nameOfShop = "hello";
+
   const defaultMsg = [
     {
       senderID: "0",
@@ -37,6 +42,7 @@ const ChatScreen = () => {
 
   return (
     <View style={styles.mainContainer}>
+      <Header title={nameOfShop} back={true} />
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         {messages.map((msg, index) => (
           <ChatBox
@@ -48,7 +54,7 @@ const ChatScreen = () => {
         ))}
       </ScrollView>
 
-      <View style={styles.textInputContainer}>
+      <View style={[styles.textInputContainer, { bottom: tabBarHeight }]}>
         <TextInput
           label="Message"
           value={text}
@@ -67,13 +73,12 @@ const styles = StyleSheet.create({
     display: "flex",
   },
   scrollContainer: {
-    flex: 1,
+    flexGrow: 1,
     marginBottom: "20%",
   },
   textInputContainer: {
     flex: 1,
     position: "fixed",
-    bottom: 0,
     width: "100%",
   },
   textInput: {
