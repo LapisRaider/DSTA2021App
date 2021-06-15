@@ -104,7 +104,8 @@ const AddItem = ({ item, add, remove }) => {
           </View>
           <View
             style={{
-              flexDirection: 'row'
+              flexDirection: 'row',
+              marginVertical: 5
             }}
           >
             <Button
