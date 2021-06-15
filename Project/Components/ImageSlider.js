@@ -80,12 +80,14 @@ const styles = StyleSheet.create({
     alignSelf: "center",
   },
   dots: {
-    color: "white",
+    color: "grey",
     margin: 3,
+    fontSize: 10,
   },
   activeDots: {
-    color: "black",
+    color: "white",
     margin: 3,
+    fontSize: 10,
   },
 });
 

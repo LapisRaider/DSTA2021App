@@ -16,21 +16,21 @@ import Header from "../Components/Header";
 const GroupBuyScreen = () => {
   var tempInnerText =
     "Lorem ipsum dolor sit a This makes the content container stre sit a This makes the content container stretch to fi ut labore et dol  sit a This makes the content container stretch to fi ut labore et doltch to fi ut labore et dol  sit a This makes the content container stretch to fi ut labore et dol  sit a This makes the content container stretch to fi ut l sit a This makes the content container stretch to fi ut labore et dolabore et dol";
-  var tempTitle = "Hello World!";
+  var shopName = "SHOP NAME";
 
   return (
     <SafeAreaView style={styles.mainContainer}>
-      <Header title="Test Header" chat={true} back={true} />
+      <Header title={shopName} chat={true} back={true} />
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         <ImageSlider
-          widthMultiplier={0.6}
+          widthMultiplier={0.9}
           bottomMarginVal={"2%"}
-          topMarginVal={"5%"}
+          topMarginVal={"4%"}
         />
-        <InfoBox title={tempTitle} innerText={tempInnerText} />
-        <InfoBox title={tempTitle} innerText={tempInnerText} />
-        <InfoBox title={tempTitle} innerText={tempInnerText} />
-        <InfoBox title={tempTitle} innerText={tempInnerText} />
+        <InfoBox title={"WHY JIO ME"} innerText={tempInnerText} />
+        <InfoBox title={"JIO WHAT"} innerText={tempInnerText} />
+        <InfoBox title={"JIO-M WHERE"} innerText={tempInnerText} />
+        <InfoBox title={"HOW TO PAY"} innerText={tempInnerText} />
         <Button
           style={styles.orderButton}
           mode="contained"
@@ -60,12 +60,11 @@ const styles = StyleSheet.create({
     color: "black",
   },
   orderButton: {
-    backgroundColor: "white",
+    backgroundColor: "#FFE32C",
     borderColor: "#FFC300",
     borderWidth: 2,
     width: "80%",
     marginTop: "8%",
-    padding: "3%",
     borderRadius: 10,
   },
   orderText: {

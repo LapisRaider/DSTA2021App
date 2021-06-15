@@ -17,8 +17,10 @@ const InfoBox = ({ title, innerText }) => {
 
 const styles = StyleSheet.create({
   mainContainer: {
-    backgroundColor: "#FFC300",
-    width: "90%",
+    backgroundColor: "white",
+    borderColor: "#FFE32C",
+    borderWidth: 3,
+    width: "95%",
     borderRadius: 15,
     padding: "3%",
     margin: "1%",
