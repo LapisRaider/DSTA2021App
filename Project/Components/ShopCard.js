@@ -2,15 +2,17 @@ import React from "react";
 import { Dimensions, Image, StyleSheet, Text, View } from 'react-native';
 import { ProgressBar } from "react-native-paper";
 
-export default function ShopCard({ image, title, collectionTime, collectionPoint, currentMoney, goalMoney }) {
+export default function ShopCard({ shopName, imageURL, imageLocal, collectionTime, collectionPoint, currentMoney, goalMoney }) {
+    console.log(imageURL);
     return (
         <View style={styles.outerView}>
             <View style={styles.innerView}>
                 <View style={styles.imageView}>
-                    <Image style={styles.image} source={require("../Images/rabbit-meat.jpeg")}/>
+                    <Image style={styles.image} source={{uri: imageURL}} />
+                    {/* <Image style={styles.image} source={imageLocal} /> */}
                 </View>
                 <View style={styles.textView}>
-                    <Text style={styles.title}>{title}</Text>
+                    <Text style={styles.shopName}>{shopName}</Text>
                     <Text style={styles.collectionInfo}>Collection:{"\n"}{collectionTime} @ {collectionPoint}</Text>
                 </View>
             </View>
@@ -49,7 +51,8 @@ const styles = StyleSheet.create({
     image: {
         width: 100,
         height: 100,
-        borderRadius: 50
+        borderRadius: 50,
+        flex: 1,
     },
 
     textView: {
@@ -59,7 +62,7 @@ const styles = StyleSheet.create({
         flexDirection: "column",
         flex: 1,
     },
-    title: {
+    shopName: {
         fontWeight: "bold",
         fontSize: 24,
         flexWrap: "wrap",

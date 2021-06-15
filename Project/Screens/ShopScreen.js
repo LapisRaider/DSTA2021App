@@ -13,7 +13,9 @@ const ShopScreen = () => {
   function addCard() {
     setCards([
         {
-          title: "Rabbit Meat",
+          shopName: "Rabbit Meat",
+          imageURL: 'https://assets2.rappler.com/2021/02/rabbit-meat-1280-1613641254701-546.jpg',
+          imageLocal: require("../Images/rabbit-meat.jpeg"),
           collectionTime: "2021-10-14, 1600hrs",
           collectionPoint: "Blk 851 Hougang Central, #13-24",
           currentMoney: 105,
@@ -30,10 +32,10 @@ const ShopScreen = () => {
     if (text) {
       const newData = cards.filter((item) => {
         const textData = text.toUpperCase();
-        const itemTitle = item.title ? item.title.toUpperCase() : ''.toUpperCase();
+        const itemShopName = item.shopName ? item.shopName.toUpperCase() : ''.toUpperCase();
         const itemCollectionTime = item.collectionTime ? item.collectionTime.toUpperCase() : ''.toUpperCase();
         const itemCollectionPoint = item.collectionPoint ? item.collectionPoint.toUpperCase() : ''.toUpperCase();
-        return (itemTitle.indexOf(textData) > -1) || (itemCollectionTime.indexOf(textData) > -1) || (itemCollectionPoint.indexOf(textData) > -1);
+        return (itemShopName.indexOf(textData) > -1) || (itemCollectionTime.indexOf(textData) > -1) || (itemCollectionPoint.indexOf(textData) > -1);
       });
       setFilteredCards(newData);
       setSearch(text);
@@ -46,7 +48,9 @@ const ShopScreen = () => {
   function renderCard({item}) {
     return (
       <TouchableOpacity>
-        <ShopCard title={item.title}
+        <ShopCard shopName={item.shopName}
+          imageURL={item.imageURL}
+          imageLocal={item.imageLocal}
           collectionTime={item.collectionTime}
           collectionPoint={item.collectionPoint}
           currentMoney={item.currentMoney}
