@@ -7,7 +7,7 @@ import Header from "../Components/Header";
 
 const DATA = [
   { title: "meep", price: 3, id: "0" },
-  { title: "meep", price: 3, id: "0" },
+  { title: "meep", price: 3, id: "1" },
 ];
 
 export default function paymentScreen() {
