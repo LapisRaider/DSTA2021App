@@ -5,10 +5,10 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import Product from "../Components/Product";
 import Header from "../Components/Header";
 
-export default function paymentScreen() {
+export default function PaymentScreen() {
   const [products, setProducts] = useState([]);
 
-  function addProduct({ product }) {
+  function renderProduct({ product }) {
     return (
       <Product
         title={product.title}
@@ -46,7 +46,7 @@ Storage: Store in the fridge for up to 7 days.
       <FlatList
         style={{ width: "100%" }}
         data={products}
-        renderItem={addProduct}
+        renderItem={renderProduct}
       />
       <View style={styles.amountStyle}>
         <Text> Total amount: $ </Text>
