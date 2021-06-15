@@ -1,11 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, View, Image } from 'react-native';
-import { Text, Title, TextInput, IconButton, Colors } from 'react-native-paper';
+import {
+  Text,
+  Title,
+  TextInput,
+  IconButton,
+  Colors,
+  Button
+} from 'react-native-paper';
+import * as ImagePicker from 'expo-image-picker';
 
 const AddItem = ({ item, add, remove }) => {
   const [name, setName] = useState('');
   const [desc, setDesc] = useState('');
-  const [image, setImage] = useState('');
+  const [image, setImage] = useState();
   const [save, setSave] = useState(true);
 
   const sendDataHandler = () => {
@@ -19,6 +27,31 @@ const AddItem = ({ item, add, remove }) => {
 
   const removeHandler = () => {
     remove(item.id);
+  };
+
+  const galleryHandler = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+      aspect: [1, 1],
+      quality: 1
+    });
+
+    if (!result.cancelled) {
+      setImage(result.uri);
+    }
+  };
+
+  const cameraHandler = async () => {
+    let result = await ImagePicker.launchCameraAsync({
+      allowsEditing: true,
+      aspect: [1, 1],
+      quality: 1
+    });
+
+    if (!result.cancelled) {
+      setImage(result.uri);
+    }
   };
 
   return (
@@ -61,7 +94,35 @@ const AddItem = ({ item, add, remove }) => {
         style={styles.input}
       />
       <View style={styles.photoPickerContainer}>
-        <Text style={styles.photoLabel}>Photo of Item</Text>
+        <View style={styles.imagePicker}>
+          <View style={styles.imagePreview}>
+            {!image ? (
+              <Text>No image picked yet.</Text>
+            ) : (
+              <Image style={styles.image} source={{ uri: image }} />
+            )}
+          </View>
+          <View
+            style={{
+              flexDirection: 'row'
+            }}
+          >
+            <Button
+              onPress={cameraHandler}
+              style={{ flex: 0.5, marginHorizontal: 10 }}
+              mode='contained'
+            >
+              Camera
+            </Button>
+            <Button
+              onPress={galleryHandler}
+              style={{ flex: 0.5, marginHorizontal: 10 }}
+              mode='contained'
+            >
+              Gallery
+            </Button>
+          </View>
+        </View>
       </View>
     </View>
   );
@@ -92,8 +153,22 @@ const styles = StyleSheet.create({
     width: '100%',
     marginVertical: 10
   },
-  photoLabel: {
-    fontWeight: 'bold'
+  imagePicker: {
+    alignItems: 'center',
+    marginBottom: 15
+  },
+  imagePreview: {
+    width: '100%',
+    height: 200,
+    marginBottom: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderColor: '#ccc',
+    borderWidth: 1
+  },
+  image: {
+    width: '100%',
+    height: '100%'
   }
 });
 
