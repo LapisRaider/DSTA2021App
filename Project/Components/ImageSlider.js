@@ -4,12 +4,6 @@ import { Text } from "react-native-paper";
 
 const { width, height } = Dimensions.get("window");
 
-/* ,
-        {
-          verticalMargin: { verticalMargin },
-          horizontalMargin: { horizontalMargin },
-        },*/
-
 const ImageSlider = ({ widthMultiplier, bottomMarginVal, topMarginVal }) => {
   const images = [
     "https://source.unsplash.com/1024x768/?nature",
