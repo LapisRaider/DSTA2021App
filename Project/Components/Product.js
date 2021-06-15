@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { Text, Title, List } from "react-native-paper";
 
-export default function Product({ title, description, price }) {
+export default function Product({ title, price }) {
   const [Quantity, setQuantity] = useState("Quantity");
   const [expanded, setExpanded] = useState(false);
+  const [totalPrice, setTotalPrice] = useState(0);
 
   return (
     <View style={styles.mainContainer}>
@@ -12,7 +13,6 @@ export default function Product({ title, description, price }) {
         {" "}
         {title} - $ {price}
       </Text>
-      <Text style={styles.textStyle}> {description} </Text>
       <List.Accordion
         style={styles.accordionStyle}
         title={Quantity}
@@ -21,10 +21,20 @@ export default function Product({ title, description, price }) {
       >
         <List.Item
           style={styles.listItemStyle}
+          title="0"
+          onPress={() => {
+            setQuantity("0");
+            setExpanded(!expanded);
+            setTotalPrice({ price } * 0);
+          }}
+        />
+        <List.Item
+          style={styles.listItemStyle}
           title="1"
           onPress={() => {
             setQuantity("1");
             setExpanded(!expanded);
+            setTotalPrice({ price } * 1);
           }}
         />
         <List.Item
@@ -33,6 +43,7 @@ export default function Product({ title, description, price }) {
           onPress={() => {
             setQuantity("2");
             setExpanded(!expanded);
+            setTotalPrice({ price } * 2);
           }}
         />
         <List.Item
@@ -41,6 +52,7 @@ export default function Product({ title, description, price }) {
           onPress={() => {
             setQuantity("3");
             setExpanded(!expanded);
+            setTotalPrice({ price } * 3);
           }}
         />
         <List.Item
@@ -49,6 +61,7 @@ export default function Product({ title, description, price }) {
           onPress={() => {
             setQuantity("4");
             setExpanded(!expanded);
+            setTotalPrice({ price } * 4);
           }}
         />
         <List.Item
@@ -57,6 +70,7 @@ export default function Product({ title, description, price }) {
           onPress={() => {
             setQuantity("5");
             setExpanded(!expanded);
+            setTotalPrice({ price } * 5);
           }}
         />
       </List.Accordion>
@@ -66,11 +80,13 @@ export default function Product({ title, description, price }) {
 
 const styles = StyleSheet.create({
   mainContainer: {
-    backgroundColor: "#FFC300",
+    backgroundColor: "white",
     width: "80%",
     borderRadius: 10,
+    borderColor: "#FFC300",
+    borderWidth: 1,
     padding: "3%",
-    margin: "1%",
+    margin: "3%",
     alignSelf: "center",
   },
   titleStyle: {
@@ -86,12 +102,15 @@ const styles = StyleSheet.create({
     height: 30,
     justifyContent: "center",
     textAlign: "right",
+    borderColor: "black",
+    borderWidth: 1,
   },
   listItemStyle: {
     height: 30,
     justifyContent: "center",
-    borderTopWidth: 1,
-    borderTopColor: "grey",
+    borderBottomWidth: 1,
+    borderStartWidth: 1,
+    borderEndWidth: 1,
     backgroundColor: "white",
   },
 });
