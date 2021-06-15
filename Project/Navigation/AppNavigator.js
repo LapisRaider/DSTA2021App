@@ -7,6 +7,7 @@ import { AntDesign } from '@expo/vector-icons';
 import AuthScreen from '../Screens/AuthScreen';
 import ShopScreen from '../Screens/ShopScreen';
 import ProfileScreen from '../Screens/ProfileScreen';
+import OpenJioScreen from '../Screens/OpenJioScreen';
 
 const App = createStackNavigator();
 const Auth = createStackNavigator();
@@ -28,10 +29,10 @@ const TabsNavigator = () => {
     >
       <Tabs.Screen
         name='Shop'
-        component={ShopScreen}
+        component={OpenJioScreen}
         options={{
           tabBarIcon: ({ color, size }) => (
-            <AntDesign name='user' size={size} color={color} />
+            <AntDesign name='shoppingcart' size={size} color={color} />
           )
         }}
       />
@@ -40,7 +41,7 @@ const TabsNavigator = () => {
         component={ProfileScreen}
         options={{
           tabBarIcon: ({ color, size }) => (
-            <AntDesign name='shoppingcart' size={size} color={color} />
+            <AntDesign name='user' size={size} color={color} />
           )
         }}
       />
