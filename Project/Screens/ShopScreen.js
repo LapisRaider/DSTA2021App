@@ -10,11 +10,28 @@ import { Searchbar } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ShopCard from '../Components/ShopCard.js';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { useSelector, useDispatch } from 'react-redux';
+
+import * as actions from '../redux/actions/actions';
 
 const ShopScreen = ({ navigation }) => {
+  const dispatch = useDispatch();
+
   const [search, setSearch] = useState('');
   const [cards, setCards] = useState([]);
   const [filteredCards, setFilteredCards] = useState([]);
+
+  const shopsData = useSelector(state => state.shop.shops);
+
+  useEffect(() => {
+    dispatch(actions.getShops());
+    setFilteredCards(shopsData);
+  }, [shopsData]);
+
+  useEffect(() => {
+    dispatch(actions.getShops());
+    setFilteredCards(shopsData);
+  }, []);
 
   function addCard() {
     setCards([
@@ -34,7 +51,7 @@ const ShopScreen = ({ navigation }) => {
   }
 
   const navigateOpenJio = () => {
-    addCard();
+    // addCard();
 
     navigation.navigate('ShopForm');
   };
@@ -79,8 +96,8 @@ const ShopScreen = ({ navigation }) => {
       <TouchableOpacity onPress={navigateGroupBuy}>
         <ShopCard
           shopName={item.shopName}
-          imageURL={item.imageURL}
-          imageLocal={item.imageLocal}
+          imageURL={item.items[0].imageURL}
+          // imageLocal={item.imageLocal}
           collectionTime={item.collectionTime}
           collectionPoint={item.collectionPoint}
           currentMoney={item.currentMoney}
@@ -108,6 +125,7 @@ const ShopScreen = ({ navigation }) => {
         data={filteredCards}
         renderItem={renderCard}
         keyExtractor={(item, index) => index.toString()}
+        contentContainerStyle={{ flex: 1, alignItems: 'center' }}
       />
     </SafeAreaView>
   );

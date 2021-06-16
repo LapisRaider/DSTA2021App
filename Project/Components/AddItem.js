@@ -10,23 +10,23 @@ import {
 } from 'react-native-paper';
 import * as ImagePicker from 'expo-image-picker';
 
-const AddItem = ({ item, add, remove }) => {
+const AddItem = ({ id, add, remove }) => {
   const [name, setName] = useState('');
   const [desc, setDesc] = useState('');
-  const [image, setImage] = useState();
+  const [image, setImage] = useState('');
   const [save, setSave] = useState(true);
 
   const sendDataHandler = () => {
-    add({ id: item.id, name: name, desc: desc, image: image });
+    add({ id: id, name: name, desc: desc, imageURL: image.toString() });
   };
 
   const saveHandler = () => {
-    console.log('saved');
+    sendDataHandler();
     setSave(!save);
   };
 
   const removeHandler = () => {
-    remove(item.id);
+    remove(id);
   };
 
   const galleryHandler = async () => {

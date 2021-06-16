@@ -8,31 +8,36 @@ import {
 } from 'react-native';
 import { TextInput, Button, Subheading } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useDispatch } from 'react-redux';
 
 import Header from '../Components/Header';
 import AddItem from '../Components/AddItem';
+import * as actions from '../redux/actions/actions';
 
 const OpenJioScreen = () => {
+  const dispatch = useDispatch();
+
   const [shopName, setShopName] = useState('');
   const [aboutShop, setAboutShop] = useState('');
   const [collectionPoint, setCollectionPoint] = useState('');
   const [scDate, setSCDate] = useState('');
   const [ofcDate, setOFCDate] = useState('');
-  const [items, setItems] = useState([
-    {
-      id: 1,
-      description: 'desc',
-      photo: 'link'
-    }
-  ]);
+  const [items, setItems] = useState([]);
 
   const addData = data => {
-    console.log(data);
+    setItems(prevState => {
+      const prevItems = prevState;
+      const newItems = prevItems.filter(item => item.id !== data.id);
+
+      return newItems.concat(data);
+    });
   };
 
   const addItem = () => {
     if (items.length === 0) {
-      setItems([{ id: 1, name: '', description: '', photo: '' }]);
+      setItems(prevState =>
+        prevState.concat([{ id: 1, name: '', description: '', imageUrl: '' }])
+      );
       return;
     }
 
@@ -43,7 +48,7 @@ const OpenJioScreen = () => {
         id: latestId + 1,
         name: '',
         description: '',
-        photo: ''
+        imageUrl: ''
       });
     });
   };
@@ -72,6 +77,25 @@ const OpenJioScreen = () => {
     setDate(currentDate);
   };
 
+  const addShopHandler = () => {
+    try {
+      const shop = {
+        shopName: shopName,
+        description: aboutShop,
+        items: [...items],
+        collectionPoint: collectionPoint,
+        collectionTime: scDate,
+        orderFormClosing: ofcDate,
+        currentMoney: 0,
+        goalMoney: 0
+      };
+
+      dispatch(actions.createShop(shop));
+    } catch (error) {
+      throw new Error(error);
+    }
+  };
+
   return (
     <KeyboardAvoidingView
       style={styles.kbContainer}
@@ -83,7 +107,7 @@ const OpenJioScreen = () => {
           <View style={styles.inputContainer}>
             <TextInput
               style={styles.input}
-              placeholder='Shope Name'
+              placeholder='Shop Name'
               label='Shop Name'
               mode='outlined'
               value={shopName}
@@ -99,12 +123,7 @@ const OpenJioScreen = () => {
             />
             <View style={styles.itemsContainer}>
               {items.map(({ _, id }) => (
-                <AddItem
-                  key={id}
-                  item={{ id: id }}
-                  add={addData}
-                  remove={removeItem}
-                />
+                <AddItem key={id} id={id} add={addData} remove={removeItem} />
               ))}
             </View>
             <View style={styles.addBtnContainer}>
@@ -149,7 +168,11 @@ const OpenJioScreen = () => {
               onChangeText={input => setOFCDate(input)}
               right={<TextInput.Icon name='calendar' />}
             />
-            <Button mode='contained' style={styles.input}>
+            <Button
+              mode='contained'
+              style={styles.input}
+              onPress={addShopHandler}
+            >
               Start Jio!
             </Button>
           </View>

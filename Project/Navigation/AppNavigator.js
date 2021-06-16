@@ -3,7 +3,9 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import { AntDesign } from '@expo/vector-icons';
+import { useSelector, useDispatch } from 'react-redux';
 
+import * as actions from '../redux/actions/actions';
 import AuthScreen from '../Screens/AuthScreen';
 import ShopScreen from '../Screens/ShopScreen';
 import ProfileScreen from '../Screens/ProfileScreen';
@@ -75,9 +77,17 @@ const AppStackNavigator = () => {
   );
 };
 
-const AppNavigator = () => (
-  <NavigationContainer>
-    <AppStackNavigator />
-  </NavigationContainer>
-);
+const AppNavigator = () => {
+  const dispatch = useDispatch();
+
+  React.useEffect(() => {
+    dispatch(actions.getShops());
+  }, []);
+
+  return (
+    <NavigationContainer>
+      <AppStackNavigator />
+    </NavigationContainer>
+  );
+};
 export default AppNavigator;
