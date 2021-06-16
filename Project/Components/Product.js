@@ -1,11 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { StyleSheet, View } from "react-native";
-import { Text, Title, List } from "react-native-paper";
+import { Text, List } from "react-native-paper";
 
-export default function Product({ title, price }) {
-  const [Quantity, setQuantity] = useState("Quantity");
+export default function Product({ title, price, calculatePrice }) {
+  const [Quantity, setQuantity] = useState(0);
   const [expanded, setExpanded] = useState(false);
-  const [totalPrice, setTotalPrice] = useState(0);
+  const [oldPrice, setOldPrice] = useState(0);
+  useEffect(() => {
+    // over here
+    calculatePrice(Quantity * price - oldPrice);
+    setOldPrice(Quantity * price);
+  }, [Quantity]);
 
   return (
     <View style={styles.mainContainer}>
@@ -15,62 +20,57 @@ export default function Product({ title, price }) {
       </Text>
       <List.Accordion
         style={styles.accordionStyle}
-        title={Quantity}
+        title={Quantity === 0 ? "Quantity" : Quantity}
         expanded={expanded}
         onPress={() => setExpanded(!expanded)}
+        right={(props) => <List.Icon {...props} icon="menu-down" />}
       >
         <List.Item
           style={styles.listItemStyle}
           title="0"
           onPress={() => {
-            setQuantity("0");
+            setQuantity(0);
             setExpanded(!expanded);
-            setTotalPrice({ price } * 0);
           }}
         />
         <List.Item
           style={styles.listItemStyle}
           title="1"
           onPress={() => {
-            setQuantity("1");
+            setQuantity(1);
             setExpanded(!expanded);
-            setTotalPrice({ price } * 1);
           }}
         />
         <List.Item
           style={styles.listItemStyle}
           title="2"
           onPress={() => {
-            setQuantity("2");
+            setQuantity(2);
             setExpanded(!expanded);
-            setTotalPrice({ price } * 2);
           }}
         />
         <List.Item
           style={styles.listItemStyle}
           title="3"
           onPress={() => {
-            setQuantity("3");
+            setQuantity(3);
             setExpanded(!expanded);
-            setTotalPrice({ price } * 3);
           }}
         />
         <List.Item
           style={styles.listItemStyle}
           title="4"
           onPress={() => {
-            setQuantity("4");
+            setQuantity(4);
             setExpanded(!expanded);
-            setTotalPrice({ price } * 4);
           }}
         />
         <List.Item
           style={styles.listItemStyle}
           title="5"
           onPress={() => {
-            setQuantity("5");
+            setQuantity(5);
             setExpanded(!expanded);
-            setTotalPrice({ price } * 5);
           }}
         />
       </List.Accordion>

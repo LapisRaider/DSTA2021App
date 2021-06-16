@@ -11,6 +11,12 @@ const DATA = [
 ];
 
 export default function paymentScreen() {
+  const [totalPrice, setTotalPrice] = useState(0);
+
+  const calculatePriceHandler = (newPrice) => {
+    setTotalPrice((prevTotalPrice) => prevTotalPrice + parseInt(newPrice));
+  };
+
   const [products, setProducts] = useState([
     { title: "Orh Nee Tart Balls", price: 14, id: "0" },
     { title: "380g Yam Jam", price: 22, id: "1" },
@@ -18,7 +24,7 @@ export default function paymentScreen() {
   ]);
 
   function renderProduct({ item }) {
-    return <Product {...item} />;
+    return <Product {...item} calculatePrice={calculatePriceHandler} />;
   }
 
   function addProduct() {
@@ -26,15 +32,10 @@ export default function paymentScreen() {
       ...products,
       {
         title: "meep",
-        description: "meeep",
         price: 3,
         id: products.length,
       },
     ]);
-  }
-
-  function tellMe() {
-    console.log(products[0]);
   }
 
   return (
@@ -48,7 +49,7 @@ export default function paymentScreen() {
       />
 
       <View style={styles.amountStyle}>
-        <Text> Total amount: $ </Text>
+        <Text>{`Total amount: $${totalPrice}`}</Text>
       </View>
       <TouchableOpacity style={styles.paymentButton}>
         <Text style={styles.paymentText}> Payment </Text>
