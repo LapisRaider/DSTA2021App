@@ -1,28 +1,28 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import {
   TouchableOpacity,
   FlatList,
   StyleSheet,
   Text,
   View,
-  ScrollView
-} from 'react-native';
-import { Searchbar } from 'react-native-paper';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import ShopCard from '../Components/ShopCard.js';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { useSelector, useDispatch } from 'react-redux';
+  ScrollView,
+} from "react-native";
+import { Searchbar } from "react-native-paper";
+import { SafeAreaView } from "react-native-safe-area-context";
+import ShopCard from "../Components/ShopCard.js";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { useSelector, useDispatch } from "react-redux";
 
-import * as actions from '../redux/actions/actions';
+import * as actions from "../redux/actions/actions";
 
 const ShopScreen = ({ navigation, route }) => {
   const dispatch = useDispatch();
 
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState("");
   const [cards, setCards] = useState([]);
   const [filteredCards, setFilteredCards] = useState([]);
 
-  const shopsData = useSelector(state => state.shop.shops);
+  const shopsData = useSelector((state) => state.shop.shops);
 
   useEffect(() => {
     dispatch(actions.getShops());
@@ -33,26 +33,26 @@ const ShopScreen = ({ navigation, route }) => {
   }, [shopsData]);
 
   const navigateOpenJio = () => {
-    navigation.navigate('ShopForm');
+    navigation.navigate("ShopForm");
   };
 
   useEffect(() => {
     searchFilter(search);
   }, [cards]);
 
-  const searchFilter = text => {
+  const searchFilter = (text) => {
     if (text) {
-      const newData = cards.filter(item => {
+      const newData = cards.filter((item) => {
         const textData = text.toUpperCase();
         const itemShopName = item.shopName
           ? item.shopName.toUpperCase()
-          : ''.toUpperCase();
+          : "".toUpperCase();
         const itemCollectionTime = item.collectionTime
           ? item.collectionTime.toUpperCase()
-          : ''.toUpperCase();
+          : "".toUpperCase();
         const itemCollectionPoint = item.collectionPoint
           ? item.collectionPoint.toUpperCase()
-          : ''.toUpperCase();
+          : "".toUpperCase();
         return (
           itemShopName.indexOf(textData) > -1 ||
           itemCollectionTime.indexOf(textData) > -1 ||
@@ -67,19 +67,20 @@ const ShopScreen = ({ navigation, route }) => {
     }
   };
 
-  const navigateGroupBuy = data => {
-    navigation.navigate('GroupBuy', { shopData: data });
+  const navigateGroupBuy = (data) => {
+    navigation.navigate("GroupBuy", { shopData: data });
   };
 
   function renderCard({ item }) {
     var imageUrl =
-      'https://orbis-alliance.com/wp-content/themes/consultix/images/no-image-found-360x260.png';
+      "https://orbis-alliance.com/wp-content/themes/consultix/images/no-image-found-360x260.png";
     try {
+      console.log(item.items[0].imageURL);
       if (item.items[0].imageURL != undefined) {
         imageUrl = item.items[0].imageURL;
       }
     } catch (e) {
-      console.log('WARNING: at shop screen line 102', e);
+      console.log("WARNING: at shop screen line 102", e);
     }
 
     return (
@@ -104,10 +105,10 @@ const ShopScreen = ({ navigation, route }) => {
           style={styles.searchbar}
           placeholder="I'm looking for..."
           value={search}
-          onChangeText={text => searchFilter(text)}
+          onChangeText={(text) => searchFilter(text)}
         />
         <TouchableOpacity style={styles.addButton} onPress={navigateOpenJio}>
-          <MaterialCommunityIcons size={40} name='plus-box' color='black' />
+          <MaterialCommunityIcons size={40} name="plus-box" color="black" />
         </TouchableOpacity>
       </View>
       <FlatList
@@ -115,7 +116,7 @@ const ShopScreen = ({ navigation, route }) => {
         data={filteredCards}
         renderItem={renderCard}
         keyExtractor={(item, index) => index.toString()}
-        contentContainerStyle={{ alignItems: 'center' }}
+        contentContainerStyle={{ alignItems: "center" }}
       />
     </SafeAreaView>
   );
@@ -123,31 +124,31 @@ const ShopScreen = ({ navigation, route }) => {
 
 const styles = StyleSheet.create({
   mainContainer: {
-    flex: 1
+    flex: 1,
   },
   header: {
-    flexDirection: 'row',
-    width: '100%',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#ffc300',
-    padding: 8
+    flexDirection: "row",
+    width: "100%",
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#ffc300",
+    padding: 8,
   },
   searchbar: {
     flex: 0.9,
-    height: '80%',
-    justifyContent: 'center',
-    alignItems: 'center'
+    height: "80%",
+    justifyContent: "center",
+    alignItems: "center",
   },
   addButton: {
     flex: 0.1,
-    justifyContent: 'center',
-    alignItems: 'center'
+    justifyContent: "center",
+    alignItems: "center",
   },
   flatList: {
-    width: '100%',
-    flex: 1
-  }
+    width: "100%",
+    flex: 1,
+  },
 });
 
 export default ShopScreen;
