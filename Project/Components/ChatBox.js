@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     marginVertical: 5,
   },
   chatText: {
-    color: "Black",
+    color: "#000000",
     padding: 10,
   },
 });
