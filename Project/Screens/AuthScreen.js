@@ -36,7 +36,7 @@ const AuthScreen = ({ navigation }) => {
     >
       <SafeAreaView style={styles.parentContainer}>
         {/* Usage of the Headers to apply to respective screens */}
-        <Header title='Test Header' chat={true} back={true} />
+        {/* <Header title='Test Header' chat={true} back={true} />
         <Divider />
         <Divider />
         <Divider />
@@ -48,7 +48,7 @@ const AuthScreen = ({ navigation }) => {
         <Divider />
         <Divider />
         <Divider />
-        <Header title='Test Header' back={true} />
+        <Header title='Test Header' back={true} /> */}
         {/* Usage of the Headers to apply to respective screens */}
         <ScrollView>
           <View style={styles.authContainer}>

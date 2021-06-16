@@ -7,10 +7,16 @@ import { AntDesign } from '@expo/vector-icons';
 import AuthScreen from '../Screens/AuthScreen';
 import ShopScreen from '../Screens/ShopScreen';
 import ProfileScreen from '../Screens/ProfileScreen';
+import OpenJioScreen from '../Screens/OpenJioScreen';
+import GroupBuyScreen from '../Screens/GroupBuyScreen';
+// import ChatScreen from '../Screens/ChatScreen';
+import ConfirmPayScreen from '../Screens/ConfirmPayScreen';
+import ChatScreen from '../Screens/ChatScreen';
 
 const App = createStackNavigator();
 const Auth = createStackNavigator();
 const Tabs = createBottomTabNavigator();
+const Orders = createStackNavigator();
 
 const AuthNavigator = () => {
   return (
@@ -20,6 +26,14 @@ const AuthNavigator = () => {
   );
 };
 
+const OrdersNavigator = () => (
+  <Orders.Navigator headerMode='none' initialRouteName='Shop'>
+    <Orders.Screen name='Shop' component={ShopScreen} />
+    <Orders.Screen name='GroupBuy' component={GroupBuyScreen} />
+    <Orders.Screen name='Chat' component={ChatScreen} />
+  </Orders.Navigator>
+);
+
 const TabsNavigator = () => {
   return (
     <Tabs.Navigator
@@ -27,12 +41,13 @@ const TabsNavigator = () => {
       tabBarOptions={{ activeTintColor: '#FFC300' }}
     >
       <Tabs.Screen
-        name='Shop'
-        component={ShopScreen}
+        name='OrdersNavigator'
+        component={OrdersNavigator}
         options={{
           tabBarIcon: ({ color, size }) => (
             <AntDesign name='shoppingcart' size={size} color={color} />
-          )
+          ),
+          tabBarLabel: 'Shop'
         }}
       />
       <Tabs.Screen

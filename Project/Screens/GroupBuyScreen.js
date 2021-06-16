@@ -1,10 +1,10 @@
-import React from "react";
-import { StyleSheet, View, ScrollView } from "react-native";
-import { Text, Button } from "react-native-paper";
-import { SafeAreaView } from "react-native-safe-area-context";
-import InfoBox from "../Components/InfoBox";
-import ImageSlider from "../Components/ImageSlider";
-import Header from "../Components/Header";
+import React from 'react';
+import { StyleSheet, View, ScrollView } from 'react-native';
+import { Text, Button } from 'react-native-paper';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import InfoBox from '../Components/InfoBox';
+import ImageSlider from '../Components/ImageSlider';
+import Header from '../Components/Header';
 
 /*  thing i need:
         - Able to render out a button at the bottom
@@ -15,8 +15,8 @@ import Header from "../Components/Header";
 
 const GroupBuyScreen = ({ navigation }) => {
   var tempInnerText =
-    "Lorem ipsum dolor sit a This makes the content container stre sit a This makes the content container stretch to fi ut labore et dol  sit a This makes the content container stretch to fi ut labore et doltch to fi ut labore et dol  sit a This makes the content container stretch to fi ut labore et dol  sit a This makes the content container stretch to fi ut l sit a This makes the content container stretch to fi ut labore et dolabore et dol";
-  var shopName = "SHOP NAME";
+    'Lorem ipsum dolor sit a This makes the content container stre sit a This makes the content container stretch to fi ut labore et dol  sit a This makes the content container stretch to fi ut labore et doltch to fi ut labore et dol  sit a This makes the content container stretch to fi ut labore et dol  sit a This makes the content container stretch to fi ut l sit a This makes the content container stretch to fi ut labore et dolabore et dol';
+  var shopName = 'SHOP NAME';
 
   return (
     <SafeAreaView style={styles.mainContainer}>
@@ -24,22 +24,22 @@ const GroupBuyScreen = ({ navigation }) => {
         title={shopName}
         chat={true}
         back={true}
-        func={() => navigation.navigate("Profile")}
+        func={() => navigation.navigate('Chat')}
       />
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         <ImageSlider
           widthMultiplier={0.9}
-          bottomMarginVal={"2%"}
-          topMarginVal={"4%"}
+          bottomMarginVal={'2%'}
+          topMarginVal={'4%'}
         />
-        <InfoBox title={"WHY JIO ME"} innerText={tempInnerText} />
-        <InfoBox title={"JIO WHAT"} innerText={tempInnerText} />
-        <InfoBox title={"JIO-M WHERE"} innerText={tempInnerText} />
-        <InfoBox title={"HOW TO PAY"} innerText={tempInnerText} />
+        <InfoBox title={'WHY JIO ME'} innerText={tempInnerText} />
+        <InfoBox title={'JIO WHAT'} innerText={tempInnerText} />
+        <InfoBox title={'JIO-M WHERE'} innerText={tempInnerText} />
+        <InfoBox title={'HOW TO PAY'} innerText={tempInnerText} />
         <Button
           style={styles.orderButton}
-          mode="contained"
-          onPress={() => console.log("Pressed")}
+          mode='contained'
+          onPress={() => console.log('Pressed')}
         >
           <Text style={styles.orderText}> ORDER NOW!!</Text>
         </Button>
@@ -51,31 +51,31 @@ const GroupBuyScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
-    display: "flex",
+    display: 'flex'
   },
   scrollContainer: {
     flexGrow: 1,
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "flex-end",
-    marginHorizontal: "3%",
-    marginBottom: "10%",
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+    marginHorizontal: '3%',
+    marginBottom: '10%'
   },
   text: {
-    color: "black",
+    color: 'black'
   },
   orderButton: {
-    backgroundColor: "#FFE32C",
-    borderColor: "#FFC300",
+    backgroundColor: '#FFE32C',
+    borderColor: '#FFC300',
     borderWidth: 2,
-    width: "80%",
-    marginTop: "8%",
-    borderRadius: 10,
+    width: '80%',
+    marginTop: '8%',
+    borderRadius: 10
   },
   orderText: {
-    color: "black",
-    fontSize: 18,
-  },
+    color: 'black',
+    fontSize: 18
+  }
 });
 
 export default GroupBuyScreen;
