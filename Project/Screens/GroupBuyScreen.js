@@ -1,47 +1,54 @@
-import React from 'react';
-import { StyleSheet, View, ScrollView } from 'react-native';
-import { Text, Button } from 'react-native-paper';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import InfoBox from '../Components/InfoBox';
-import ImageSlider from '../Components/ImageSlider';
-import Header from '../Components/Header';
-
-/*  thing i need:
-        - Able to render out a button at the bottom
-        - Able to show a picture of the food (if possible can slide the pic to see more)
-        - 3 categories, able to see the payment, about, collection details
-        - top right got a ask question icon
-*/
+import React from "react";
+import { StyleSheet, View, ScrollView } from "react-native";
+import { Text, Button } from "react-native-paper";
+import { SafeAreaView } from "react-native-safe-area-context";
+import InfoBox from "../Components/InfoBox";
+import ImageSlider from "../Components/ImageSlider";
+import Header from "../Components/Header";
 
 const GroupBuyScreen = ({ navigation, route }) => {
-  console.log(route.params.angie);
+  var shopData = route.params.shopData;
+  var items = route.params.shopData.items;
+  var imageLinks = [];
+  var itemDescription = [];
 
-  var tempInnerText =
-    'Lorem ipsum dolor sit a This makes the content container stre sit a This makes the content container stretch to fi ut labore et dol  sit a This makes the content container stretch to fi ut labore et doltch to fi ut labore et dol  sit a This makes the content container stretch to fi ut labore et dol  sit a This makes the content container stretch to fi ut l sit a This makes the content container stretch to fi ut labore et dolabore et dol';
-  var shopName = 'SHOP NAME';
+  for (var i = 0; i < items.length; ++i) {
+    if (items[i].imageURL != undefined) {
+      imageLinks.push(items[i].imageURL);
+    } else {
+      imageLinks.push(
+        "https://orbis-alliance.com/wp-content/themes/consultix/images/no-image-found-360x260.png"
+      );
+    }
+    itemDescription.push(items[i].name + " - $" + items[i].desc + " " + "\n");
+  }
+
+  var howToPayText =
+    "Paynow / Paylah / Google Pay \n All product prices listed in Singapore Dollars (SGD)";
 
   return (
     <SafeAreaView style={styles.mainContainer}>
       <Header
-        title={shopName}
+        title={shopData.shopName}
         chat={true}
         back={true}
-        func={() => navigation.navigate('Chat')}
+        func={() => navigation.navigate("Chat")}
       />
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         <ImageSlider
           widthMultiplier={0.9}
-          bottomMarginVal={'2%'}
-          topMarginVal={'4%'}
+          bottomMarginVal={"2%"}
+          topMarginVal={"4%"}
+          imagesURL={imageLinks}
         />
-        <InfoBox title={'WHY JIO ME'} innerText={tempInnerText} />
-        <InfoBox title={'JIO WHAT'} innerText={tempInnerText} />
-        <InfoBox title={'JIO-M WHERE'} innerText={tempInnerText} />
-        <InfoBox title={'HOW TO PAY'} innerText={tempInnerText} />
+        <InfoBox title={"WHY JIO ME"} innerText={shopData.description} />
+        <InfoBox title={"JIO WHAT"} innerText={itemDescription} />
+        <InfoBox title={"JIO-M WHERE"} innerText={shopData.collectionPoint} />
+        <InfoBox title={"HOW TO PAY"} innerText={howToPayText} />
         <Button
           style={styles.orderButton}
-          mode='contained'
-          onPress={() => navigation.navigate('Payment')}
+          mode="contained"
+          onPress={() => navigation.navigate("Payment")}
         >
           <Text style={styles.orderText}> ORDER NOW!!</Text>
         </Button>
@@ -53,32 +60,32 @@ const GroupBuyScreen = ({ navigation, route }) => {
 const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
-    display: 'flex'
+    display: "flex",
   },
   scrollContainer: {
     flexGrow: 1,
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-    marginHorizontal: '3%',
-    marginBottom: '10%'
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "flex-end",
+    marginHorizontal: "3%",
+    marginBottom: "10%",
   },
   text: {
-    color: 'black'
+    color: "black",
   },
   orderButton: {
-    backgroundColor: '#FFE32C',
-    borderColor: '#FFC300',
+    backgroundColor: "#FFE32C",
+    borderColor: "#FFC300",
     borderWidth: 2,
-    width: '80%',
-    marginTop: '8%',
+    width: "80%",
+    marginTop: "8%",
     borderRadius: 10,
-    marginBottom: 20
+    marginBottom: 20,
   },
   orderText: {
-    color: 'black',
-    fontSize: 18
-  }
+    color: "black",
+    fontSize: 18,
+  },
 });
 
 export default GroupBuyScreen;

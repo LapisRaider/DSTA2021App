@@ -4,13 +4,19 @@ import { Text } from "react-native-paper";
 
 const { width, height } = Dimensions.get("window");
 
-const ImageSlider = ({ widthMultiplier, bottomMarginVal, topMarginVal }) => {
-  const images = [
-    "https://source.unsplash.com/1024x768/?nature",
-    "https://source.unsplash.com/1024x768/?water",
-    "https://source.unsplash.com/1024x768/?girl",
-    "https://source.unsplash.com/1024x768/?tree",
-  ];
+const ImageSlider = ({
+  widthMultiplier,
+  bottomMarginVal,
+  topMarginVal,
+  imagesURL,
+}) => {
+  //in case if empty, just a precaution
+  if (imagesURL == null) {
+    imagesURL = [];
+    imagesURL.push(
+      "https://orbis-alliance.com/wp-content/themes/consultix/images/no-image-found-360x260.png"
+    );
+  }
 
   let [slideState, setSlideState] = useState(0);
 
@@ -41,16 +47,16 @@ const ImageSlider = ({ widthMultiplier, bottomMarginVal, topMarginVal }) => {
         onScroll={change}
         scrollEventThrottle={16}
       >
-        {images.map((image, index) => (
+        {imagesURL.map((imagelink, index) => (
           <Image
             style={[styles.imageContainer, { width: width * widthMultiplier }]}
-            source={{ uri: image }}
+            source={{ uri: imagelink }}
             key={index}
           />
         ))}
       </ScrollView>
       <View style={styles.dotsContainer}>
-        {images.map((i, k) => (
+        {imagesURL.map((i, k) => (
           <Text
             key={k}
             style={k == slideState ? styles.activeDots : styles.dots}
