@@ -5,6 +5,7 @@ import {
   StyleSheet,
   Text,
   View,
+  ScrollView,
 } from "react-native";
 import { Searchbar } from "react-native-paper";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -111,13 +112,16 @@ const ShopScreen = ({ navigation }) => {
           <MaterialCommunityIcons size={40} name="plus-box" color="black" />
         </TouchableOpacity>
       </View>
-      <FlatList
-        style={styles.flatList}
-        data={filteredCards}
-        renderItem={renderCard}
-        keyExtractor={(item, index) => index.toString()}
-        contentContainerStyle={{ flex: 1, alignItems: "center" }}
-      />
+      <ScrollView>
+        <FlatList
+          style={styles.flatList}
+          data={filteredCards}
+          renderItem={renderCard}
+          keyExtractor={(item, index) => index.toString()}
+          contentContainerStyle={{ flex: 1, alignItems: "center" }}
+        />
+      </ScrollView>
+      
     </SafeAreaView>
   );
 };
