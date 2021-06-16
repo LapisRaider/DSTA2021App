@@ -14,8 +14,9 @@ import Slider from '@react-native-community/slider';
 import Header from '../Components/Header';
 import AddItem from '../Components/AddItem';
 import * as actions from '../redux/actions/actions';
+import { getAsyncStorage } from '../utils/AsyncStorageHelper';
 
-const OpenJioScreen = ({navigation}) => {
+const OpenJioScreen = ({ navigation }) => {
   const dispatch = useDispatch();
 
   const [shopName, setShopName] = useState('');
@@ -93,7 +94,11 @@ const OpenJioScreen = ({navigation}) => {
       };
 
       dispatch(actions.createShop(shop));
-      dispatch(actions.getShops());
+
+      getAsyncStorage('shops').then(data => {
+        navigation.navigate('Shop', { shops: data });
+      });
+
       navigation.goBack();
     } catch (error) {
       throw new Error(error);
