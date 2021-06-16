@@ -4,7 +4,6 @@ import { Text } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Product from '../Components/Product';
 import Header from '../Components/Header';
-import { useNavigation } from '@react-navigation/native';
 
 const DATA = [
   { title: 'meep', price: 3, id: '0' },
