@@ -92,10 +92,41 @@ const OpenJioScreen = ({ navigation }) => {
         currentMoney: 0,
         goalMoney: goalMoney
       };
-
       dispatch(actions.createShop(shop));
-
       getAsyncStorage('shops').then(data => {
+        const fakeShops = [
+          {
+            shopName: "Mama's Kueh",
+            description: "Best Kueh in Singapore, JB, and some say Batam.",
+            items: [...items],
+            collectionPoint: collectionPoint,
+            collectionTime: scDate,
+            orderFormClosing: ofcDate,
+            currentMoney: 160,
+            goalMoney: 330
+          },
+          {
+            shopName: "Ah Gong's Cake",
+            description: "Eat cat get fat.",
+            items: [...items],
+            collectionPoint: collectionPoint,
+            collectionTime: scDate,
+            orderFormClosing: ofcDate,
+            currentMoney: 240,
+            goalMoney: 700
+          },
+          {
+            shopName: "Abang's Agar Agar",
+            description: "Agaration is best.",
+            items: [...items],
+            collectionPoint: collectionPoint,
+            collectionTime: scDate,
+            orderFormClosing: ofcDate,
+            currentMoney: 75,
+            goalMoney: 150
+          },
+        ];
+        dispatch(actions.createShop(fakeShops[Math.floor(Math.random() * fakeShops.length)]));
         navigation.navigate('Shop', { shops: data });
       });
 
