@@ -15,7 +15,7 @@ import Header from '../Components/Header';
 import AddItem from '../Components/AddItem';
 import * as actions from '../redux/actions/actions';
 
-const OpenJioScreen = () => {
+const OpenJioScreen = ({navigation}) => {
   const dispatch = useDispatch();
 
   const [shopName, setShopName] = useState('');
@@ -93,6 +93,8 @@ const OpenJioScreen = () => {
       };
 
       dispatch(actions.createShop(shop));
+      dispatch(actions.getShops());
+      navigation.goBack();
     } catch (error) {
       throw new Error(error);
     }

@@ -24,30 +24,16 @@ const ShopScreen = ({ navigation }) => {
   const shopsData = useSelector((state) => state.shop.shops);
 
   useEffect(() => {
+    console.log("sia lah 1");
     dispatch(actions.getShops());
+  }, []);
+
+  useEffect(() => {
+    console.log("sia lah 2");
     setFilteredCards(shopsData);
   }, [shopsData]);
 
-  function addCard() {
-    setCards([
-      {
-        shopName: "Rabbit Meat",
-        imageURL:
-          "https://assets2.rappler.com/2021/02/rabbit-meat-1280-1613641254701-546.jpg",
-        imageLocal: require("../Images/rabbit-meat.jpeg"),
-        collectionTime: "2021-10-14, 1600hrs",
-        collectionPoint: "Blk 851 Hougang Central, #13-24",
-        currentMoney: 105,
-        goalMoney: 300,
-        index: cards.length,
-      },
-      ...cards,
-    ]);
-  }
-
   const navigateOpenJio = () => {
-    // addCard();
-
     navigation.navigate("ShopForm");
   };
 
