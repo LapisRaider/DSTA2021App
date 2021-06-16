@@ -98,34 +98,72 @@ const OpenJioScreen = ({ navigation }) => {
           {
             shopName: "Mama's Kueh",
             description: "Best Kueh in Singapore, JB, and some say Batam.",
-            items: [{ id: 1, name: "", description: "", imageURL: "" }],
-            collectionPoint: collectionPoint,
-            collectionTime: scDate,
-            orderFormClosing: ofcDate,
+            items: [
+              {
+                id: 1,
+                name: "Kueh Mix",
+                desc: "9",
+                imageURL:
+                  "https://images.ctfassets.net/iyw8v8as9pkb/uSLap2vWjQmcAqOcuSecW/6837b2847396e8272319e9a37473fdaf/_For_the_Sweet_Tooth-_8_Local_Cakes_of_Singapore_Banner_WR_Resized.jpg?w=940&q=85",
+              },
+              {
+                id: 2,
+                name: "Nonya Kueh",
+                desc: "5",
+                imageURL:
+                  "https://www.misstamchiak.com/wp-content/uploads/2016/11/ji-xiang-ang-ku-kueh.jpg",
+              },
+            ],
+            collectionPoint: "Hougang CC 1st floor",
+            collectionTime: "24/06/2021",
+            orderFormClosing: "20/06/2021",
             currentMoney: 160,
             goalMoney: 330,
           },
           {
             shopName: "Ah Gong's Cake",
             description: "Eat cat get fat.",
-            items: [{ id: 1, name: "", description: "", imageURL: "" }],
-            collectionPoint: collectionPoint,
-            collectionTime: scDate,
-            orderFormClosing: ofcDate,
+            items: [
+              {
+                id: 1,
+                name: "Butter Cake",
+                desc: "2",
+                imageURL:
+                  "https://www.theflavorbender.com/wp-content/uploads/2020/08/Sri-Lankan-Butter-Cake-SM-9023.jpg",
+              },
+              {
+                id: 2,
+                name: "BananaCake",
+                desc: "2",
+                imageURL:
+                  "https://simshomekitchen.com/wp-content/uploads/2018/04/the-best-moist-banana-cake-3-scaled.jpg",
+              },
+            ],
+            collectionPoint: "Punggol LRT Riveria",
+            collectionTime: "25/06/2021",
+            orderFormClosing: "19/06/2021",
             currentMoney: 240,
             goalMoney: 700,
           },
           {
             shopName: "Abang's Agar Agar",
             description: "Agaration is best.",
-            items: [{ id: 1, name: "", description: "", imageURL: "" }],
-            collectionPoint: collectionPoint,
-            collectionTime: scDate,
-            orderFormClosing: ofcDate,
+            items: [
+              {
+                id: 1,
+                name: "Agar Agar",
+                desc: "10",
+                imageURL: "https://assets.rbl.ms/24881897/origin.jpg",
+              },
+            ],
+            collectionPoint: "Punggol 21CC",
+            collectionTime: "28/06/2021",
+            orderFormClosing: "17/06/2021",
             currentMoney: 75,
             goalMoney: 150,
           },
         ];
+        console.log(fakeShops);
         dispatch(
           actions.createShop(
             fakeShops[Math.floor(Math.random() * fakeShops.length)]

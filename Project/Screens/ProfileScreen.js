@@ -23,8 +23,6 @@ const ProfileScreen = () => {
     });
   }
 
-  console.log(shopsData);
-
   return (
     <SafeAreaView style={styles.mainContainer}>
       <Header title="MY JIOs" />
@@ -63,16 +61,8 @@ const ProfileScreen = () => {
               showsHorizontalScrollIndicator={false}
             >
               <BuyerOrders
-                imageUri={require("../Images/rabbit-meat.jpeg")}
-                name="Rabbit Meat2"
-              />
-              <BuyerOrders
-                imageUri={require("../Images/burnt-ends.jpeg")}
-                name="Burnt Ends Bakery2"
-              />
-              <BuyerOrders
-                imageUri={require("../Images/whisking-bakes.jpg")}
-                name="Whisking Bakes2"
+                imageUri={require("../assets/kueh.jpg")}
+                name="Mama's Kueh"
               />
             </ScrollView>
           </View>
