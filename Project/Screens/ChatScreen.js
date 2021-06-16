@@ -83,13 +83,13 @@ const styles = StyleSheet.create({
   },
   textInputContainer: {
     flex: 1,
-    position: "fixed",
+    position: "absolute",
     width: "100%",
     flexDirection: "row",
   },
   textInput: {
     flex: 1,
-    borderColor: "Black",
+    borderColor: "#000000",
     alignSelf: "flex-start",
   },
 });
