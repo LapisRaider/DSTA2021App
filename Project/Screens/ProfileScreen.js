@@ -8,8 +8,20 @@ import PastOrders from "../Components/PastOrders";
 import { useSelector, useDispatch } from "react-redux";
 
 const ProfileScreen = () => {
-  const shopsData = useSelector((state) => state.shop.shops);
-
+  let shopsData = useSelector((state) => state.shop.shops);
+  if (shopsData == null) {
+    shopsData = [];
+    shopsData.push({
+      shopName: "-",
+      description: "-",
+      items: [{ id: 1, name: "", description: "", imageUrl: "" }],
+      collectionPoint: "",
+      collectionTime: "-",
+      orderFormClosing: "",
+      currentMoney: 0,
+      goalMoney: 0,
+    });
+  }
   return (
     <SafeAreaView style={styles.mainContainer}>
       <Header title="MY JIOs" />
