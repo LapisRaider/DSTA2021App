@@ -17,7 +17,7 @@ const AddItem = ({ id, add, remove }) => {
   const [save, setSave] = useState(true);
 
   const sendDataHandler = () => {
-    add({ id: id, name: name, desc: desc, image: image });
+    add({ id: id, name: name, desc: desc, imageURL: image.toString() });
   };
 
   const saveHandler = () => {

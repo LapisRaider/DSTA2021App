@@ -1,4 +1,4 @@
-import { CLEAR_STORE, CREATE_SHOP } from '../actions/actions';
+import { CLEAR_STORE, CREATE_SHOP, GET_SHOPS } from '../actions/actions';
 
 const initialState = {
   shops: [
@@ -28,6 +28,9 @@ export default (state = initialState, action) => {
       return {
         shops: newShops
       };
+    }
+    case GET_SHOPS: {
+      return { shops: action.shops };
     }
     default:
       return state;
