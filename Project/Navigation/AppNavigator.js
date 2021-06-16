@@ -43,7 +43,7 @@ const TabsNavigator = () => {
   return (
     <Tabs.Navigator
       initialRouteName='Shop'
-      tabBarOptions={{ activeTintColor: '#FFC300' }}
+      tabBarOptions={{ activeTintColor: '#FFD52C' }}
     >
       <Tabs.Screen
         name='OrdersNavigator'
