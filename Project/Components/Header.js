@@ -1,39 +1,39 @@
-import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
-import { Searchbar } from 'react-native-paper';
-import { useNavigation } from '@react-navigation/native';
+import React from "react";
+import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
+import { Searchbar } from "react-native-paper";
+import { useNavigation } from "@react-navigation/native";
 
 const Header = ({ title, back, chat, func }) => {
   const navigation = useNavigation();
 
   const BackIcon = () => (
-    <Ionicons
-      name='arrow-back'
-      size={34}
-      style={styles.backIcon}
-      color='black'
-      onPress={() => navigation.goBack()}
-    />
+    <TouchableOpacity onPress={() => navigation.goBack()}>
+      <Ionicons
+        name="arrow-back"
+        size={34}
+        style={styles.backIcon}
+        color="black"
+      />
+    </TouchableOpacity>
   );
   const ShareIcon = () => (
     <TouchableOpacity>
-      <Ionicons name='share-outline' size={34} color='black' />
+      <Ionicons name="share-outline" size={34} color="black" />
     </TouchableOpacity>
   );
   const HelpIcon = () => (
     <TouchableOpacity>
-      <Ionicons name='help-circle-outline' size={34} color='black' />
+      <Ionicons name="help-circle-outline" size={34} color="black" />
     </TouchableOpacity>
   );
   const ChatIcon = ({ pressFunc }) => (
-    <TouchableOpacity>
+    <TouchableOpacity onPress={pressFunc}>
       <Ionicons
-        name='chatbubble-ellipses-outline'
+        name="chatbubble-ellipses-outline"
         size={34}
         style={styles.chatIcon}
-        color='black'
-        onPress={pressFunc}
+        color="black"
       />
     </TouchableOpacity>
   );
@@ -53,7 +53,7 @@ const Header = ({ title, back, chat, func }) => {
               <View
                 style={[
                   styles.twentyContainer,
-                  { flexDirection: 'row', justifyContent: 'flex-end' }
+                  { flexDirection: "row", justifyContent: "flex-end" },
                 ]}
               >
                 <ChatIcon pressFunc={func} />
@@ -77,7 +77,7 @@ const Header = ({ title, back, chat, func }) => {
         )
       ) : (
         <View style={styles.searchContainer}>
-          <Searchbar placeholder='Search jioMe...' style={styles.search} />
+          <Searchbar placeholder="Search jioMe..." style={styles.search} />
           <View style={styles.searchIcons}>
             <ShareIcon />
             <HelpIcon />
@@ -91,60 +91,60 @@ const Header = ({ title, back, chat, func }) => {
 const styles = StyleSheet.create({
   titleContainer: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
+    justifyContent: "center",
+    alignItems: "center",
   },
   backContainer: {
     flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center'
+    flexDirection: "row",
+    alignItems: "center",
   },
   twentyContainer: {
-    flex: 0.2
+    flex: 0.2,
   },
   backTitleContainer: {
     flex: 0.6,
-    justifyContent: 'center',
-    alignItems: 'center'
+    justifyContent: "center",
+    alignItems: "center",
   },
   backChatContainer: {
     flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center'
+    flexDirection: "row",
+    alignItems: "center",
   },
   headerContainer: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    backgroundColor: '#FFC300',
-    height: 64
+    flexDirection: "row",
+    justifyContent: "center",
+    backgroundColor: "#FFC300",
+    height: 64,
   },
   title: {
-    textAlign: 'center',
-    fontWeight: 'bold',
+    textAlign: "center",
+    fontWeight: "bold",
     fontSize: 22,
-    color: 'black'
+    color: "black",
   },
   searchContainer: {
     flex: 1,
-    flexDirection: 'row',
+    flexDirection: "row",
     marginHorizontal: 10,
-    alignItems: 'center'
+    alignItems: "center",
   },
   search: {
-    width: '80%'
+    width: "80%",
   },
   searchIcons: {
     flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    marginLeft: 14
+    flexDirection: "row",
+    justifyContent: "center",
+    marginLeft: 14,
   },
   backIcon: {
-    marginHorizontal: 10
+    marginHorizontal: 10,
   },
   chatIcon: {
-    marginRight: 10
-  }
+    marginRight: 10,
+  },
 });
 
 export default Header;
