@@ -9,12 +9,12 @@ import { useSelector, useDispatch } from "react-redux";
 
 const ProfileScreen = () => {
   let shopsData = useSelector((state) => state.shop.shops);
-  if (shopsData == null) {
+  if (shopsData == null || shopsData == undefined) {
     shopsData = [];
     shopsData.push({
       shopName: "-",
       description: "-",
-      items: [{ id: 1, name: "", description: "", imageUrl: "" }],
+      items: [{ id: 1, name: "", description: "", imageURL: "" }],
       collectionPoint: "",
       collectionTime: "-",
       orderFormClosing: "",
@@ -22,6 +22,9 @@ const ProfileScreen = () => {
       goalMoney: 0,
     });
   }
+
+  console.log(shopsData);
+
   return (
     <SafeAreaView style={styles.mainContainer}>
       <Header title="MY JIOs" />
@@ -42,7 +45,11 @@ const ProfileScreen = () => {
             >
               {shopsData.map((shop, index) => (
                 <HostOrders
-                  imageUri={shop.items[0].imageURL}
+                  imageUri={
+                    shop.items == null
+                      ? shop.items[0].imageURL
+                      : "https://orbis-alliance.com/wp-content/themes/consultix/images/no-image-found-360x260.png"
+                  }
                   name={shop.shopName}
                   closingDate={shop.orderFormClosing}
                 />
