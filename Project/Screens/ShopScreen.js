@@ -112,16 +112,13 @@ const ShopScreen = ({ navigation }) => {
           <MaterialCommunityIcons size={40} name="plus-box" color="black" />
         </TouchableOpacity>
       </View>
-      <ScrollView>
-        <FlatList
-          style={styles.flatList}
-          data={filteredCards}
-          renderItem={renderCard}
-          keyExtractor={(item, index) => index.toString()}
-          contentContainerStyle={{ flex: 1, alignItems: "center" }}
-        />
-      </ScrollView>
-      
+      <FlatList
+        style={styles.flatList}
+        data={filteredCards}
+        renderItem={renderCard}
+        keyExtractor={(item, index) => index.toString()}
+        contentContainerStyle={{ alignItems: "center" }}
+      />
     </SafeAreaView>
   );
 };
