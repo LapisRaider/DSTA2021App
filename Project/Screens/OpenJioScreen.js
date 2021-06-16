@@ -9,6 +9,7 @@ import {
 import { TextInput, Button, Subheading } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useDispatch } from 'react-redux';
+import Slider from '@react-native-community/slider';
 
 import Header from '../Components/Header';
 import AddItem from '../Components/AddItem';
@@ -22,6 +23,7 @@ const OpenJioScreen = () => {
   const [collectionPoint, setCollectionPoint] = useState('');
   const [scDate, setSCDate] = useState('');
   const [ofcDate, setOFCDate] = useState('');
+  const [goalMoney, setGoalMoney] = useState(0);
   const [items, setItems] = useState([]);
 
   const addData = data => {
@@ -87,7 +89,7 @@ const OpenJioScreen = () => {
         collectionTime: scDate,
         orderFormClosing: ofcDate,
         currentMoney: 0,
-        goalMoney: 0
+        goalMoney: goalMoney
       };
 
       dispatch(actions.createShop(shop));
@@ -140,6 +142,36 @@ const OpenJioScreen = () => {
                 >
                   Add More Items
                 </Button>
+              </View>
+            </View>
+            <View style={{ width: '100%', alignItems: 'center' }}>
+              <Slider
+                style={styles.input}
+                value={goalMoney}
+                onValueChange={val => setGoalMoney(val)}
+                minimumValue={0}
+                maximumValue={1000}
+                minimumTrackTintColor='#FF9D2C'
+                maximumTrackTintColor='#FF9D2C'
+                thumbTintColor='#FF9D2C'
+                step={1}
+              />
+              <View
+                style={{
+                  flexDirection: 'row'
+                }}
+              >
+                <View style={{ flex: 0.33, alignItems: 'center' }}>
+                  <Subheading>$0</Subheading>
+                </View>
+                <View style={{ flex: 0.33, alignItems: 'center' }}>
+                  <Subheading style={{ fontWeight: 'bold' }}>
+                    {`$${goalMoney}`}
+                  </Subheading>
+                </View>
+                <View style={{ flex: 0.33, alignItems: 'center' }}>
+                  <Subheading>$1000</Subheading>
+                </View>
               </View>
             </View>
             <TextInput

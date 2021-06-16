@@ -35,7 +35,7 @@ export default function ShopCard({
           color='#ffc300'
         />
         <Text style={styles.progressText}>
-          Goal: ${1}/${1}
+          Goal: ${currentMoney}/${goalMoney}
         </Text>
       </View>
     </View>
