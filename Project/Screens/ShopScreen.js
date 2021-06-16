@@ -28,11 +28,6 @@ const ShopScreen = ({ navigation }) => {
     setFilteredCards(shopsData);
   }, [shopsData]);
 
-  useEffect(() => {
-    dispatch(actions.getShops());
-    setFilteredCards(shopsData);
-  }, []);
-
   function addCard() {
     setCards([
       {
@@ -87,13 +82,13 @@ const ShopScreen = ({ navigation }) => {
     }
   };
 
-  const navigateGroupBuy = () => {
-    navigation.navigate('GroupBuy');
+  const navigateGroupBuy = data => {
+    navigation.navigate('GroupBuy', { angie: data });
   };
 
   function renderCard({ item }) {
     return (
-      <TouchableOpacity onPress={navigateGroupBuy}>
+      <TouchableOpacity onPress={() => navigateGroupBuy(item)}>
         <ShopCard
           shopName={item.shopName}
           imageURL={item.items[0].imageURL}
