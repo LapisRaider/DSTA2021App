@@ -1,43 +1,43 @@
-import React, { useState } from 'react';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { StyleSheet, View, ScrollView } from 'react-native';
-import { TextInput } from 'react-native-paper';
-import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
-import Header from '../Components/Header';
+import React, { useState } from "react";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { StyleSheet, View, ScrollView } from "react-native";
+import { TextInput } from "react-native-paper";
+import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs";
+import Header from "../Components/Header";
 
-import ChatBox from '../Components/ChatBox';
+import ChatBox from "../Components/ChatBox";
 
-const senderColor = '#FFD52C';
-const receiverColor = '#FF9D2C';
+const senderColor = "#FFD52C";
+const receiverColor = "#FF9D2C";
 
 const ChatScreen = () => {
   //0 is receiver, 1 is sender
   const tabBarHeight = useBottomTabBarHeight();
-  const nameOfShop = 'hello';
+  const nameOfShop = "hello";
 
   const defaultMsg = [
     {
-      senderID: '0',
+      senderID: "0",
       message:
-        "Hello how can I assist you? Please leave a message and I'll get back to you."
+        "Hello how can I assist you? Please leave a message and I'll get back to you.",
     },
     {
-      senderID: '1',
-      message: 'Hello I would like to enquire about this product?'
+      senderID: "1",
+      message: "Hello I would like to enquire about this product?",
     },
     {
-      senderID: '0',
-      message: 'Sure! What would you like to know?'
-    }
+      senderID: "0",
+      message: "Sure! What would you like to know?",
+    },
   ];
 
   const [messages, setMessages] = useState([...defaultMsg]);
 
-  const [text, setText] = useState('');
+  const [text, setText] = useState("");
 
   function submitText() {
-    setMessages([...messages, { senderID: '1', message: text }]);
-    setText('');
+    setMessages([...messages, { senderID: "1", message: text }]);
+    setText("");
   }
 
   return (
@@ -46,27 +46,27 @@ const ChatScreen = () => {
       <ScrollView
         contentContainerStyle={[
           styles.scrollContainer,
-          { marginBottom: tabBarHeight + 50 }
+          { marginBottom: tabBarHeight + 50 },
         ]}
       >
         {messages.map((msg, index) => (
           <ChatBox
             msg={msg.message}
             colorBG={msg.senderID == 0 ? receiverColor : senderColor}
-            alignment={msg.senderID == 0 ? 'flex-start' : 'flex-end'}
+            alignment={msg.senderID == 0 ? "flex-start" : "flex-end"}
             key={index}
           />
         ))}
       </ScrollView>
 
-      <View style={[styles.textInputContainer, { bottom: tabBarHeight }]}>
+      <View style={[styles.textInputContainer]}>
         <TextInput
-          label='Message'
+          label="Message"
           value={text}
-          onChangeText={text => setText(text)}
+          onChangeText={(text) => setText(text)}
           style={styles.textInput}
           onSubmitEditing={submitText}
-          right={<TextInput.Icon onPress={submitText} name='send' />}
+          right={<TextInput.Icon onPress={submitText} name="send" />}
         />
       </View>
     </SafeAreaView>
@@ -76,22 +76,23 @@ const ChatScreen = () => {
 const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
-    display: 'flex'
+    display: "flex",
   },
   scrollContainer: {
-    flexGrow: 1
+    flexGrow: 1,
   },
   textInputContainer: {
     flex: 1,
-    position: 'absolute',
-    width: '100%',
-    flexDirection: 'row'
+    position: "absolute",
+    width: "100%",
+    flexDirection: "row",
+    bottom: 0,
   },
   textInput: {
     flex: 1,
-    borderColor: '#000000',
-    alignSelf: 'flex-start'
-  }
+    borderColor: "#000000",
+    alignSelf: "flex-start",
+  },
 });
 
 export default ChatScreen;
