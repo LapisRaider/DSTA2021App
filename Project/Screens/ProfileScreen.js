@@ -44,7 +44,7 @@ const ProfileScreen = () => {
               {shopsData.map((shop, index) => (
                 <HostOrders
                   imageUri={
-                    shop.items == null
+                    shop.items != null
                       ? shop.items[0].imageURL
                       : "https://orbis-alliance.com/wp-content/themes/consultix/images/no-image-found-360x260.png"
                   }
