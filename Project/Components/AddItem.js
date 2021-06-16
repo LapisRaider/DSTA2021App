@@ -86,9 +86,10 @@ const AddItem = ({ id, add, remove }) => {
         style={styles.input}
       />
       <TextInput
-        label='Item Description'
-        placeholder='Optional'
+        label='Item Price'
+        placeholder='Price'
         mode='outlined'
+        keyboardType='decimal-pad'
         value={desc}
         onChangeText={val => setDesc(val)}
         style={styles.input}

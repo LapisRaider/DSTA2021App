@@ -48,7 +48,7 @@ const GroupBuyScreen = ({ navigation, route }) => {
         <Button
           style={styles.orderButton}
           mode="contained"
-          onPress={() => navigation.navigate("Payment")}
+          onPress={() => navigation.navigate("Payment", { itemData: items })}
         >
           <Text style={styles.orderText}> ORDER NOW!!</Text>
         </Button>
