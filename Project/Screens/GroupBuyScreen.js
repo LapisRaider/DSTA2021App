@@ -39,7 +39,7 @@ const GroupBuyScreen = ({ navigation }) => {
         <Button
           style={styles.orderButton}
           mode='contained'
-          onPress={() => console.log('Pressed')}
+          onPress={() => navigation.navigate('Payment')}
         >
           <Text style={styles.orderText}> ORDER NOW!!</Text>
         </Button>
@@ -70,7 +70,8 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     width: '80%',
     marginTop: '8%',
-    borderRadius: 10
+    borderRadius: 10,
+    marginBottom: 20
   },
   orderText: {
     color: 'black',

@@ -9,9 +9,9 @@ import ShopScreen from '../Screens/ShopScreen';
 import ProfileScreen from '../Screens/ProfileScreen';
 import OpenJioScreen from '../Screens/OpenJioScreen';
 import GroupBuyScreen from '../Screens/GroupBuyScreen';
-// import ChatScreen from '../Screens/ChatScreen';
-import ConfirmPayScreen from '../Screens/ConfirmPayScreen';
 import ChatScreen from '../Screens/ChatScreen';
+import paymentScreen from '../Screens/paymentScreen';
+import ConfirmPayScreen from '../Screens/ConfirmPayScreen';
 
 const App = createStackNavigator();
 const Auth = createStackNavigator();
@@ -29,8 +29,11 @@ const AuthNavigator = () => {
 const OrdersNavigator = () => (
   <Orders.Navigator headerMode='none' initialRouteName='Shop'>
     <Orders.Screen name='Shop' component={ShopScreen} />
+    <Orders.Screen name='ShopForm' component={OpenJioScreen} />
     <Orders.Screen name='GroupBuy' component={GroupBuyScreen} />
     <Orders.Screen name='Chat' component={ChatScreen} />
+    <Orders.Screen name='Payment' component={paymentScreen} />
+    <Orders.Screen name='ConfirmPay' component={ConfirmPayScreen} />
   </Orders.Navigator>
 );
 

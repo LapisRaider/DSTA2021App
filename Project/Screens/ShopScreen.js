@@ -33,6 +33,12 @@ const ShopScreen = ({ navigation }) => {
     ]);
   }
 
+  const navigateOpenJio = () => {
+    addCard();
+
+    navigation.navigate('ShopForm');
+  };
+
   useEffect(() => {
     searchFilter(search);
   }, [cards]);
@@ -93,7 +99,7 @@ const ShopScreen = ({ navigation }) => {
           value={search}
           onChangeText={text => searchFilter(text)}
         />
-        <TouchableOpacity style={styles.addButton} onPress={addCard}>
+        <TouchableOpacity style={styles.addButton} onPress={navigateOpenJio}>
           <MaterialCommunityIcons size={40} name='plus-box' color='black' />
         </TouchableOpacity>
       </View>
