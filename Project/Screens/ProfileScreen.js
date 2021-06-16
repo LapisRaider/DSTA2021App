@@ -8,8 +8,20 @@ import PastOrders from "../Components/PastOrders";
 import { useSelector, useDispatch } from "react-redux";
 
 const ProfileScreen = () => {
-  const shopsData = useSelector((state) => state.shop.shops);
-
+  let shopsData = useSelector((state) => state.shop.shops);
+  if (shopsData == null) {
+    shopsData = [];
+    shopsData.push({
+      shopName: "-",
+      description: "-",
+      items: [{ id: 1, name: "", description: "", imageUrl: "" }],
+      collectionPoint: "",
+      collectionTime: "-",
+      orderFormClosing: "",
+      currentMoney: 0,
+      goalMoney: 0,
+    });
+  }
   return (
     <SafeAreaView style={styles.mainContainer}>
       <Header title="MY JIOs" />
@@ -64,16 +76,20 @@ const ProfileScreen = () => {
               showsHorizontalScrollIndicator={false}
             >
               <PastOrders
-                imageUri={require("../Images/rabbit-meat.jpeg")}
-                name="Rabbit Meat3"
+                imageUri={require("../assets/burnt-ends.jpeg")}
+                name="Homemade Sugar Donuts"
               />
               <PastOrders
-                imageUri={require("../Images/burnt-ends.jpeg")}
-                name="Burnt Ends Bakery3"
+                imageUri={require("../assets/dough-chijmes.jpeg")}
+                name="AM Artisan cookies"
               />
               <PastOrders
-                imageUri={require("../Images/whisking-bakes.jpg")}
-                name="Whisking Bakes3"
+                imageUri={require("../assets/whisking-bakes.jpeg")}
+                name="Japanese bakes"
+              />
+              <PastOrders
+                imageUri={require("../assets/youkneadcake.jpeg")}
+                name="Homemade Cakes"
               />
             </ScrollView>
           </View>
